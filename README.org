@@ -1,2 +1,2 @@
-* She
-She, an abbreviation of *S*yscall *h*ooking *e*nvironment, provides a convenient and simple way to hijack system calls with /ftrace/.
+* Fsh
+Fsh, an abbreviation of *F*trace *s*yscall *h*ook, provides a convenient and simple way to hook system calls using /ftrace/.
