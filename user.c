@@ -5,7 +5,13 @@
 
 SYSCALL_OVERRIDE(sys_execve)
 {
-    return 0;
+    char filename[256] = {0};
+
+    if (strncpy_from_user(filename, (const char *) *(context->args[0]),
+                          sizeof(filename) - 1) >= 0) {
+        pr_info("fsh: %s is executed!\n", filename);
+    }
+    return true;
 }
 
 

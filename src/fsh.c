@@ -7,7 +7,8 @@ int fsh_init(void)
         int ret;
         fsh_hook_t *hook = fsh_hook_ops[i].private;
         pr_info("%s\n", hook->fname);
-        ret = ftrace_set_filter(&fsh_hook_ops[i], hook->fname, strlen(hook->fname), 0);
+        ret = ftrace_set_filter(&fsh_hook_ops[i], hook->fname,
+                                strlen(hook->fname), 0);
         if (ret < 0) {
             pr_alert("Setting ftrace filter failed with %d\n", ret);
             return ret;
@@ -27,5 +28,3 @@ int fsh_exit(void)
     }
     return 0;
 }
-
-
