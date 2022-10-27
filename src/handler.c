@@ -1,3 +1,4 @@
+#include <linux/ftrace.h>
 #include <linux/printk.h>
 #include <fsh.h>
 
@@ -7,6 +8,6 @@ void fsh_syscall_handler(unsigned long ip,
                          struct ftrace_ops *ops,
                          struct ftrace_regs *regs)
 {
-    struct fsh_hook *hook = (struct fsh_hook *) ops->private;
+    fsh_hook_t *hook = ops->private;
     pr_info("%s\n", hook->fname);
 }

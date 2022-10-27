@@ -1,7 +1,7 @@
-obj-m += ftrace_hook.o
+obj-m += my_module.o
 
 ccflags-y := -I$(src)/include
-ftrace_hook-y := src/handler.o src/module.o src/syscall.o user.o
+my_module-y := src/handler.o src/fsh.o src/syscall.o user.o
 
 PWD := $(CURDIR) 
 
@@ -18,6 +18,6 @@ table:
 clean:
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean 
 install:
-	sudo insmod ./ftrace_hook.ko
+	sudo insmod ./my_module.ko
 uninstall:
-	sudo rmmod ftrace_hook
+	sudo rmmod my_module
