@@ -44,11 +44,16 @@ int fsh_init(void)
         int ret;
         fsh_hook_t *hook = fsh_hook_ops[i].private;
         hook->origin = (void *) fsh_lookup_syscall_addr(hook->fname);
+        if (!hook->origin) {
+            pr_alert("fsh: failed to lookup address of \'%s\'\n", hook->fname);
+            continue;
+        }
         ret = ftrace_set_filter_ip(&fsh_hook_ops[i],
                                    (unsigned long) hook->origin, 0, 0);
         if (ret < 0) {
-            pr_alert("Setting ftrace filter failed with %d\n", ret);
-            return ret;
+            pr_alert("fsh: failed to set ftrace filter with return value %d\n",
+                     ret);
+            continue;
         }
         register_ftrace_function(&fsh_hook_ops[i]);
     }
