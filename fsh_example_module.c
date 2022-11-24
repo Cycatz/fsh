@@ -48,19 +48,19 @@ FSH_SYSCALL_OVERRIDE(sys_openat)
     return true;
 }
 
-static int __init my_module_init(void)
+static int __init fsh_example_module_init(void)
 {
     fsh_init();
     return 0;
 }
 
-static void __exit my_module_exit(void)
+static void __exit fsh_example_module_exit(void)
 {
     fsh_exit();
 }
 
-module_init(my_module_init);
-module_exit(my_module_exit);
+module_init(fsh_example_module_init);
+module_exit(fsh_example_module_exit);
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Cycatz");
