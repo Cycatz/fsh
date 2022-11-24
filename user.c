@@ -31,6 +31,22 @@ FSH_SYSCALL_OVERRIDE(sys_execve)
     return true;
 }
 
+FSH_SYSCALL_OVERRIDE(sys_openat)
+{
+    char filename[256] = {0};
+    const uid_t uid = 1000;
+
+    if (current->cred->uid.val != uid) return true;
+
+    if (strncpy_from_user(filename, (const char *) *FSH_FUNC_ARG2,
+                          sizeof(filename) - 1) < 0) {
+        return true;
+    }
+
+    pr_info("fsh: file %s opened by uid %u\n", filename,
+            current->cred->uid.val);
+    return true;
+}
 
 static int __init my_module_init(void)
 {
