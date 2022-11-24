@@ -1,6 +1,6 @@
 obj-m += my_module.o
 
-ccflags-y := -I$(src)/include
+ccflags-y := -I$(src)/include -Wno-declaration-after-statement
 my_module-y := src/handler.o src/fsh.o src/syscall.o user.o
 
 PWD := $(CURDIR) 

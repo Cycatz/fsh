@@ -6,16 +6,15 @@
 
 
 
-#define __SYSCALL(sym)                                              \
-    {                                                               \
-        .func = &fsh_syscall_handler,                               \
-        .flags = FTRACE_OPS_FL_SAVE_REGS | FTRACE_OPS_FL_IPMODIFY | \
-                 FTRACE_OPS_FL_RECURSION,                           \
-        .private =                                                  \
-            &(fsh_hook_t){                                          \
-                .fname = "__x64_" #sym,                             \
-                .hook = &hook_##sym,                                \
-            },                                                      \
+#define __SYSCALL(sym)                                             \
+    {                                                              \
+        .func = &fsh_syscall_handler,                              \
+        .flags = FTRACE_OPS_FL_SAVE_REGS | FTRACE_OPS_FL_IPMODIFY, \
+        .private =                                                 \
+            &(fsh_hook_t){                                         \
+                .fname = "__x64_" #sym,                            \
+                .hook = &hook_##sym,                               \
+            },                                                     \
     },
 
 struct ftrace_ops fsh_hook_ops[] = {
