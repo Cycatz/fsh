@@ -12,7 +12,7 @@
         .flags = FTRACE_OPS_FL_SAVE_REGS | FTRACE_OPS_FL_IPMODIFY, \
         .private =                                                 \
             &(fsh_hook_t){                                         \
-                .fname = "__x64_" #sym,                            \
+                .fname = FSH_SYSCALL_NAME(sym),                    \
                 .hook = &hook_##sym,                               \
             },                                                     \
     },
