@@ -11,7 +11,7 @@ overrided_syscalls_table := overrided_syscalls.tbl
 gen_calls_hdr := ./scripts/gen_syscall_hdr.sh
 
 
-all:
+all: table
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
 table:
 	$(gen_calls_hdr) $(overrided_syscalls_table) $(overrided_syscalls_header)
