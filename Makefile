@@ -1,23 +1,37 @@
-obj-m += fsh.o
+# Define your module name
+MODULE_NAME := fsh_example
 
-ccflags-y := -I$(src)/include -Wno-declaration-after-statement
-fsh-y := src/handler.o src/fsh.o src/syscall.o fsh_example_module.o
+# Define your custom_objs
+FSH_CUSTOM_OBJS := fsh_example_mod.o
+FSH_DIR := $(src)/fsh
+
+ifneq ($(KERNELRELEASE),)
+
+# The fsh.mk has already defined obj-m and ccflags-y for you
+# You can use '+=' to append your custom args here
+# For example:
+#   ccflags-y += -Wall
+#   $(MODULE_NAME)-objs += $(ANOTHER_CUSTOM_OBJS)
+include $(FSH_DIR)/fsh.mk
+
+else # ifneq ($(KERNELRELEASE),)
 
 PWD := $(CURDIR) 
 
+.PHONY: all
 
-overrided_syscalls_header := include/gen/overrided_syscalls.h
-overrided_syscalls_table := overrided_syscalls.tbl  
-gen_calls_hdr := ./scripts/gen_syscall_hdr.sh
+all: build
 
-
-all: table
+build:
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
-table:
-	$(gen_calls_hdr) $(overrided_syscalls_table) $(overrided_syscalls_header)
+
 clean:
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean 
+
+endif
+
 install:
-	sudo insmod ./fsh.ko
+	insmod $(MODULE_NAME).ko
+
 uninstall:
-	sudo rmmod fsh 
+	rmmod $(MODULE_NAME) 
