@@ -5,7 +5,7 @@ Fsh, an abbreviation of *F*trace *s*yscall *h*ook, provides a convenient and sim
 
 See [[https://github.com/Cycatz/fsh-example][fsh-example]]
 
-* Compatilibity
+* Compatibility
 
 |                | amd64   | i386    | AArch64 | AArch32 |
 |----------------+---------+---------+---------+---------|
