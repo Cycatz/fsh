@@ -1,6 +1,6 @@
-FSH_OBJS := $(FSH_DIR)/src/handler.o \
-            $(FSH_DIR)/src/fsh.o     \
-            $(FSH_DIR)/src/syscall.o
+FSH_OBJS := fsh/src/handler.o \
+            fsh/src/fsh.o     \
+            fsh/src/syscall.o
 
 FSH_INC_DIR := $(FSH_DIR)/include
 
