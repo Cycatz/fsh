@@ -9,7 +9,7 @@ See [[https://github.com/Cycatz/fsh-example][fsh-example]]
 
 |                | amd64   | i386    | AArch64 | AArch32 |
 |----------------+---------+---------+---------+---------|
-| >= 5.11.0      | Unknown | Unknown | Unknown | Unknown |
+| >= 5.11.0      | ✅      | Unknown | Unknown | Unknown |
 | 5.7.0 - 5.11.0 | Unknown | Unknown | Unknown | Unknown |
 | 4.17.0 - 5.7.0 | Unknown | Unknown | Unknown | Unknown |
 | < 4.17.0       | Unknown | Unknown | Unknown | Unknown |
